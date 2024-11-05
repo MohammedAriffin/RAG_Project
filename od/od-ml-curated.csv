@@ -1,19 +1,15 @@
-Attribute,Value,RAG Status
-Title,Medical Leave and On-Duty Application Procedure,Green
-Applicant,ISHAN ROY (RA2211003010709),Green
-Date,"Mar 15 (Edited Jul 10)",Green
-Medical Leave (ML) Conditions,"- You are required to be hospitalized in a significant hospital due to the unfortunate incident
-- You are hospitalized for 4 or more than 4 working days",Amber
-ML Required Documents,"- OD/ML Form
-- Letter from Parent (acknowledging the student has been sick and requesting ML approval)
-- Medical Certificate
-- Fitness Certificate 
-- Discharge Summary (received after being released from hospitalization)
-- Prescription for medicines
-- Scanned report of injury or illness (if available)",Amber
-ML Consequences,"Not fulfilling any of the above requirements can result in your ML to bounce or get rejected.",Red
-On-Duty (OD) Application,"The OD application procedure has been digitalized through an online platform, reducing the hassle of running around with papers.",Green
-OD/ML Portal,"- The website for OD/ML procedure is only accessible on the SRMIST network in ACADEMIC BUILDINGS ONLY (Eg: TP, UB, BEL, etc).
-- This link will not be accessible on Hostel WIFI or any external WIFI/mobile data.
-- All rules regarding application for ODs and MLs as mentioned in the previous GCR Posts (such as 5 day deadline for OD application, 4 day hospitalization requirement for ML, etc.) still apply.",Red
-Video Guide,"The guide video is available on OneDrive/SharePoint. Please sign into your SRM account to access the video.",Green
+metadata,question,answer
+OD Application,How can I apply for on-duty leave?,"SRM has digitalized the OD Application Procedure by an online platform, reducing the hassle of running around with papers. The 2nd Link attached is the link to the portal. Please note the new OD application procedure as demonstrated by me in the attached video."
+OD/ML Portal Access,Where can I access the OD/ML portal?,"The website for OD/ML procedure is only accessible on the SRMIST network in ACADEMIC BUILDINGS ONLY (Eg: TP, UB, BEL, etc). This link will not be accessible on Hostel WIFI or any external WIFI/mobile data."
+OD/ML Rules,What are the rules for OD and ML applications?,"All rules regarding application for ODs and MLs as mentioned in the previous GCR Posts (such as 5 day deadline for OD application, 4 day hospitalization requirement for ML, etc.) still apply."
+Video Guide,Where can I find the video guide for OD/ML?,The guide video I made is on the first link. Please sign into your SRM account while accessing OneDrive/SharePoint to access the video.
+Medical Leave Conditions,What are the conditions for applying for medical leave?,"On account of a grave medical incident, a medical leave needs to be applied for the next working day that you come back for attending classes. As per C. Tech. Department Norms, Medical Leaves can be applied for only on the below conditions: 1. You are required to be hospitalized in a significant hospital due to the unfortunate incident. 2. You are hospitalized for 4 or more than 4 working days."
+Medical Leave Documents,What documents are required for medical leave?,"On fulfilling the above conditions, the Medical leave can be applied for with the below documents necessarily attached: 1. OD/ML Form 2. Letter from Parent (a letter in which the parent acknowledges that the student has been sick and requests approval of the ML) 3. Medical Certificate 4. Fitness Certificate 5. Discharge Summary (received after being released from hospitalisation) 6. Prescription for medicines 7. Scanned report of injury or illness (if available)"
+Medical Leave Consequences,What are the consequences of not fulfilling medical leave requirements?,Not fulfilling any of the above requirements can result in your ML to bounce or get rejected.
+Medical Leave,What are the conditions for medical leave?,You are required to be hospitalized in a significant hospital due to the unfortunate incident. You are hospitalized for 4 or more than 4 working days.
+Medical Leave,What documents are required for medical leave?,"OD/ML Form, Letter from Parent, Medical Certificate, Fitness Certificate, Discharge Summary, Prescription for medicines, Scanned report of injury or illness (if available)"
+Medical Leave,What are the consequences of not fulfilling the requirements for medical leave?,Not fulfilling any of the above requirements can result in your ML to bounce or get rejected.
+On-Duty,How do I apply for on-duty leave?,"The OD application procedure has been digitalized through an online platform, reducing the hassle of running around with papers."
+OD/ML Portal,What are the access restrictions for the OD/ML portal?,"The website for OD/ML procedure is only accessible on the SRMIST network in ACADEMIC BUILDINGS ONLY (Eg: TP, UB, BEL, etc). This link will not be accessible on Hostel WIFI or any external WIFI/mobile data. All rules regarding application for ODs and MLs as mentioned in the previous GCR Posts (such as 5 day deadline for OD application, 4 day hospitalization requirement for ML, etc.) still apply."
+Video Guide,Where can I find the video guide for the OD/ML process?,The guide video is available on OneDrive/SharePoint. Please sign into your SRM account to access the video.
+Video Transcript,What are the steps to apply for leave using the OD/ML platform?,... (Detailed steps from the video transcript)
