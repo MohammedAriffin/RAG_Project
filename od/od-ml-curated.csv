@@ -1,0 +1,19 @@
+Attribute,Value,RAG Status
+Title,Medical Leave and On-Duty Application Procedure,Green
+Applicant,ISHAN ROY (RA2211003010709),Green
+Date,"Mar 15 (Edited Jul 10)",Green
+Medical Leave (ML) Conditions,"- You are required to be hospitalized in a significant hospital due to the unfortunate incident
+- You are hospitalized for 4 or more than 4 working days",Amber
+ML Required Documents,"- OD/ML Form
+- Letter from Parent (acknowledging the student has been sick and requesting ML approval)
+- Medical Certificate
+- Fitness Certificate 
+- Discharge Summary (received after being released from hospitalization)
+- Prescription for medicines
+- Scanned report of injury or illness (if available)",Amber
+ML Consequences,"Not fulfilling any of the above requirements can result in your ML to bounce or get rejected.",Red
+On-Duty (OD) Application,"The OD application procedure has been digitalized through an online platform, reducing the hassle of running around with papers.",Green
+OD/ML Portal,"- The website for OD/ML procedure is only accessible on the SRMIST network in ACADEMIC BUILDINGS ONLY (Eg: TP, UB, BEL, etc).
+- This link will not be accessible on Hostel WIFI or any external WIFI/mobile data.
+- All rules regarding application for ODs and MLs as mentioned in the previous GCR Posts (such as 5 day deadline for OD application, 4 day hospitalization requirement for ML, etc.) still apply.",Red
+Video Guide,"The guide video is available on OneDrive/SharePoint. Please sign into your SRM account to access the video.",Green
