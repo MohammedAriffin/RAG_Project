@@ -1,0 +1,31 @@
+{
+	// See https://go.microsoft.com/fwlink/?LinkId=827846 to learn about workspace recommendations.
+	// Extension identifier format: ${publisher}.${name}. Example: vscode.csharp
+
+	// List of extensions which should be recommended for users of this workspace.
+	"recommendations": [
+		"dsznajder.es7-react-js-snippets",
+		"dbaeumer.vscode-eslint",
+		"file-icons.file-icons",
+		"github.vscode-github-actions",
+		"github.codespaces",
+		"github.copilot",
+		"github.copilot-chat",
+		"ms-python.isort",
+		"ms-toolsai.jupyter",
+		"ms-toolsai.vscode-jupyter-cell-tags",
+		"ms-toolsai.jupyter-keymap",
+		"ms-toolsai.jupyter-renderers",
+		"ms-toolsai.vscode-jupyter-slideshow",
+		"ms-python.vscode-pylance",
+		"ms-python.python",
+		"ms-python.debugpy",
+		"tomoki1207.pdf",
+		"ms-vscode-remote.remote-wsl"
+		
+	],
+	// List of extensions recommended by VS Code that should not be recommended for users of this workspace.
+	"unwantedRecommendations": [
+		
+	]
+}
