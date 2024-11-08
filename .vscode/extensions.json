@@ -21,7 +21,8 @@
 		"ms-python.python",
 		"ms-python.debugpy",
 		"tomoki1207.pdf",
-		"ms-vscode-remote.remote-wsl"
+		"ms-vscode-remote.remote-wsl",
+		"s-nlf-fh.glassit"
 		
 	],
 	// List of extensions recommended by VS Code that should not be recommended for users of this workspace.
