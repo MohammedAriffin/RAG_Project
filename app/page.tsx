@@ -1,116 +1,169 @@
+'use client'
+
+import { useState, useEffect } from 'react'
+import { useChat } from 'ai/react'
+import { useTheme } from 'next-themes'
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarProvider,
+  SidebarTrigger,
+  useSidebar,
+} from "@/components/ui/sidebar"
+import { Moon, Sun, Trash2, Github, Twitter, Linkedin, MessageSquare, ChevronRight, Menu } from 'lucide-react'
 import Image from 'next/image'
-import Link from 'next/link'
+import { useToast } from '@/hooks/use-toast'
 
-export default function Home() {
+export default function ChatPage() {
+  const { messages, input, handleInputChange, handleSubmit, setMessages, isLoading } = useChat({
+    api: '/api/chat',
+  })
+  const [mounted, setMounted] = useState(false)
+  const { theme, setTheme } = useTheme()
+
+  const { toast } = useToast();
+
+  useEffect(() => setMounted(true), [])
+
+  const clearChat = () => {
+    setMessages([])
+    toast({
+      title: "Chat Cleared",
+      description: "All messages have been removed.",
+    })
+  }
+
+  if (!mounted) return null
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <Link href="/api/python">
-            <code className="font-mono font-bold">api/index.py</code>
-          </Link>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+    <SidebarProvider>
+      <div className="flex h-screen bg-background w-full">
+        <Sidebar side="left" variant="floating" collapsible="icon" className='flex flex-col justify-between'>
+          <SidebarHeader className="h-16 flex items-center justify-center">
+            {/* <SidebarMenuButton asChild tooltip="Expand Sidebar"> */}
+              <Image src="/logo.svg" alt="Logo" width={40} height={40} className='text-white' />
+            {/* </SidebarMenuButton> */}
+          </SidebarHeader>
+          <SidebarContent className="flex flex-col items-center h-full justify-center gap-6 pb-24">
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild tooltip="GitHub" className='flex items-center justify-center'>
+                  <a href="https://github.com/MohammedAriffin/RAG_Project" target="_blank" rel="noopener noreferrer">
+                    <Github className="h-5 w-5 bg-secondary" />
+                  </a>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild tooltip="Twitter" className='flex items-center justify-center'>
+                  <a href="https://twitter.com/greeenboi" target="_blank" rel="noopener noreferrer">
+                    <Twitter className="h-5 w-5 bg-secondary" />
+                  </a>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild tooltip="LinkedIn" className='flex items-center justify-center'>
+                  <a href="https://www.linkedin.com/in/suvan-gowri-shanker-596943261/" target="_blank" rel="noopener noreferrer">
+                    <Linkedin className="h-5 w-5 bg-secondary" />
+                  </a>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarContent>
+          <SidebarFooter className="pb-4">
+            <SidebarMenu>
+              <SidebarMenuItem className='flex items-center justify-center'>
+                <SidebarMenuButton className='w-fit' onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} tooltip="Toggle Theme">
+                  {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarFooter>
+        </Sidebar>
+        <ChatInterface 
+          messages={messages}
+          input={input}
+          handleInputChange={handleInputChange}
+          handleSubmit={handleSubmit}
+          isLoading={isLoading}
+          clearChat={clearChat}
         />
       </div>
+    </SidebarProvider>
+  )
+}
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+function ChatInterface({ messages, input, handleInputChange, handleSubmit, isLoading, clearChat }: {
+  messages: { role: string, content: string }[],
+  input: string,
+  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void,
+  isLoading: boolean,
+  clearChat: () => void
+}) {
+  const { state } = useSidebar()
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+  return (
+    <main className={`flex-1 flex flex-col transition-all duration-300 ease-in-out mr-16 ${state === 'expanded' ? 'ml-16' : 'ml-12'}`}>
+      <header className="flex items-center justify-between p-4 border-b">
+        <div className="flex items-center">
+          <SidebarTrigger className="mr-8">
+            <Menu className="h-6 w-6" />
+          </SidebarTrigger>
+          <h1 className="text-2xl font-bold flex items-center">
+            <MessageSquare className="mr-2 h-6 w-6" />
+            Chat with AI
+          </h1>
+        </div>
+        <Button variant="outline" onClick={clearChat} disabled={messages.length === 0}>
+          <Trash2 className="h-4 w-4 mr-2" />
+          Clear Chat
+        </Button>
+      </header>
+      <ScrollArea className="flex-1 p-4">
+        {messages.map((message, index) => (
+          <div key={index} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} mb-4`}>
+            <div 
+              className={`rounded-lg p-3 max-w-[80%] ${
+                message.role === 'user' 
+                  ? 'bg-primary text-primary-foreground' 
+                  : 'bg-secondary text-secondary-foreground'
+              }`}
+            >
+              {message.content}
+            </div>
+          </div>
+        ))}
+        {isLoading && (
+          <div className="flex justify-start mb-4">
+            <div className="bg-secondary text-secondary-foreground rounded-lg p-3">
+              <div className="typing-indicator">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+          </div>
+        )}
+      </ScrollArea>
+      <footer className="p-4 border-t">
+        <form onSubmit={handleSubmit} className="flex items-center space-x-2">
+          <Input
+            value={input}
+            onChange={handleInputChange}
+            placeholder="Type your message..."
+            className="flex-1"
+          />
+          <Button type="submit" disabled={isLoading}>Send</Button>
+        </form>
+      </footer>
     </main>
   )
 }
