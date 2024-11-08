@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useChat } from 'ai/react'
+import { Message, useChat } from 'ai/react'
 import { useTheme } from 'next-themes'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -23,7 +23,7 @@ import Image from 'next/image'
 import { useToast } from '@/hooks/use-toast'
 
 export default function ChatPage() {
-  const { messages, input, handleInputChange, handleSubmit, setMessages, isLoading } = useChat({
+  const { messages, input, handleInputChange, handleSubmit, setMessages, isLoading, error  } = useChat({
     api: '/api/chat',
   })
   const [mounted, setMounted] = useState(false)
@@ -31,6 +31,9 @@ export default function ChatPage() {
 
   const { toast } = useToast();
 
+  if (error){
+    console.error("chat error", error)
+  }
   useEffect(() => setMounted(true), [])
 
   const clearChat = () => {
@@ -79,7 +82,7 @@ export default function ChatPage() {
           </SidebarContent>
           <SidebarFooter className="pb-4">
             <SidebarMenu>
-              <SidebarMenuItem className='flex items-center justify-center'>
+              <SidebarMenuItem className=''>
                 <SidebarMenuButton className='w-fit' onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} tooltip="Toggle Theme">
                   {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
                 </SidebarMenuButton>
@@ -101,7 +104,7 @@ export default function ChatPage() {
 }
 
 function ChatInterface({ messages, input, handleInputChange, handleSubmit, isLoading, clearChat }: {
-  messages: { role: string, content: string }[],
+  messages: Message[],
   input: string,
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void,
@@ -109,7 +112,8 @@ function ChatInterface({ messages, input, handleInputChange, handleSubmit, isLoa
   clearChat: () => void
 }) {
   const { state } = useSidebar()
-
+  
+  console.log(messages)
   return (
     <main className={`flex-1 flex flex-col transition-all duration-300 ease-in-out mr-16 ${state === 'expanded' ? 'ml-16' : 'ml-12'}`}>
       <header className="flex items-center justify-between p-4 border-b">
@@ -130,10 +134,10 @@ function ChatInterface({ messages, input, handleInputChange, handleSubmit, isLoa
       <ScrollArea className="flex-1 p-4">
         {messages.map((message, index) => (
           <div key={index} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} mb-4`}>
-            <div 
+            <div
               className={`rounded-lg p-3 max-w-[80%] ${
-                message.role === 'user' 
-                  ? 'bg-primary text-primary-foreground' 
+                message.role === 'user'
+                  ? 'bg-primary text-primary-foreground'
                   : 'bg-secondary text-secondary-foreground'
               }`}
             >
