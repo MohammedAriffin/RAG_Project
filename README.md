@@ -15,7 +15,7 @@ This project aims to develop a Conversational AI assistant that helps users with
       |-od-ml-raw.csv 
  |-README.md 
  |-requirement.txt 
- |-run_model.py 
+ |-final.py 
 ```
 
 ### Files and Directories
@@ -39,7 +39,7 @@ This project aims to develop a Conversational AI assistant that helps users with
     ```
 3. Run the `run_model.py` script to start the Conversational AI model.
     ```
-    python run_model.py
+    python final.py
     ```
 4. Follow the instructions provided by the model to interact with the Conversational AI assistant.
 
