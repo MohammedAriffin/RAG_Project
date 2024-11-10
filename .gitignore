@@ -38,3 +38,5 @@ __pycache__
 #python
 rag/
 
+#Cache file
+data/
