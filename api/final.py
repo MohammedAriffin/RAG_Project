@@ -108,30 +108,8 @@ Please provide an answer based on the above information."""
 
         # Generate response using the LLM
         try:
-            print(conversation)
             response = self.llm.invoke(conversation)
             return response
         except Exception as e:
             self.console.print(f"[red]Error generating response: {e}[/red]")
             return f"Error generating response: {str(e)}"
-
-def main():
-    # Initialize the assistant
-    assistant = ODMLAssistant()
-    console = Console()
-    
-    while True:
-        # Get user input
-        user_prompt = input("\nEnter your question about OD/ML (or 'quit' to exit): ")
-        
-        if user_prompt.lower() == 'quit':
-            break
-            
-        # Generate and display response
-        response = assistant.generate_response(user_prompt)
-        console.print("\n[bold green]Response:[/bold green]")
-        console.print(response)
-        console.print("\n" + "="*50)
-
-if __name__ == "__main__":
-    main()
