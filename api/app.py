@@ -5,7 +5,7 @@ from final import ODMLAssistant
 import json
 
 app = Flask(__name__)
-CORS(app)
+# CORS(app)
 
 assistant = ODMLAssistant()
 
