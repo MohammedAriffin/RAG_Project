@@ -47,16 +47,7 @@ class ODMLAssistant:
                 metadatas=metadatas,
                 ids=ids
             )
-            self.console.print("[green]Successfully loaded data into ChromaDB with default embeddings[/green]")
-
-            # Optional: Verify by querying a sample ID to ensure it’s accessible
-            try:
-                sample_result = self.collection.get(ids=[ids[0]])
-                self.console.print(f"Sample document check: {sample_result}")
-                
-            except Exception as e:
-                self.console.print(f"[red]Error verifying data insertion: {e}[/red]")
-                
+            self.console.print("[green]Successfully loaded data into ChromaDB with default embeddings[/green]")                
 
         except Exception as e:
             self.console.print(f"[red]Error loading data: {e}[/red]")
@@ -76,7 +67,6 @@ class ODMLAssistant:
             relevant_contexts = []
             for doc in results['documents'][0]:
                 context = f"Answer: {doc}"
-                print(context)
                 relevant_contexts.append(context)
                 if len(relevant_contexts) >= min_contexts:
                     break
@@ -108,7 +98,6 @@ Please provide an answer based on the above information."""
 
         # Generate response using the LLM
         try:
-            print(conversation)
             response = self.llm.invoke(conversation)
             return response
         except Exception as e:
