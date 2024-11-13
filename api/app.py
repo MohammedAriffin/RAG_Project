@@ -1,10 +1,11 @@
 from flask import Flask, request, jsonify, Response
 from flask_cors import CORS
 from final import ODMLAssistant
+import time
 import json
 
 app = Flask(__name__)
-# CORS(app)
+CORS(app)
 
 assistant = ODMLAssistant()
 
@@ -24,6 +25,8 @@ def chat():
 
         # Get response directly without streaming
         response = assistant.generate_response(user_message)
+        # time.sleep(5)
+        # response = "Suvan : Hi, How can I help you?"
         return jsonify({"response": response})
     
     except Exception as e:
