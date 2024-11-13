@@ -40,3 +40,4 @@ rag/
 
 #Cache file
 data/
+.venv

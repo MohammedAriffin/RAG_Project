@@ -18,6 +18,7 @@ def chat():
             # Simulate processing the message
             print(f"Processing message: {message}")
             yield f"data: {json.dumps(message)}\n\n"
+            # time.wait(1)
             print("response stream")
             response = {
                 "id": str(uuid.uuid4()),

@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Message, useChat } from 'ai/react'
 import { useTheme } from 'next-themes'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -21,11 +20,10 @@ import {
 import { Moon, Sun, Trash2, Github, Twitter, Linkedin, MessageSquare, ChevronRight, Menu } from 'lucide-react'
 import Image from 'next/image'
 import { useToast } from '@/hooks/use-toast'
+import { Message, useAiChat } from '@/hooks/use-ai-chat'
 
 export default function ChatPage() {
-  const { messages, input, handleInputChange, handleSubmit, setMessages, isLoading, error  } = useChat({
-    api: '/api/chat',
-  })
+  const { messages, input, handleInputChange, handleSubmit, setMessages, isLoading, error } = useAiChat()
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
 
